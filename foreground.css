@@ -1,0 +1,133 @@
+:root {
+	--clr-black: rgba(60, 80, 50, 255);
+	--clr-sun: rgba(246, 243, 198, 255);
+	--gradient-bg: linear-gradient(
+		180deg,
+		rgba(241, 80, 150, 1) 0%,
+		rgba(228, 151, 109, 1) 50%
+	);
+	--clr-white: rgba(254, 250, 239, 255);
+	--clr-mountain1: rgba(105, 96, 101, 255);
+	--clr-mountain2: rgba(140, 138, 160, 255);
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+}
+
+body,
+body::after,
+body::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  overflow: hidden;
+}
+
+body {
+	min-height: 100vh;
+	overflow: hidden;
+}
+
+.sky {
+	background: var(--gradient-bg);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.front {
+	display: flex;
+	position: fixed;
+	bottom: calc(-70vh / 2);
+	height: 50vh;
+	width: 100%;
+	z-index: 999;
+}
+
+.left-slope,
+.right-slope {
+	flex: 1;
+	height: 150%;
+	background-color: var(--clr-black);
+}
+
+.left-slope {
+	transform: skewY(5deg);
+  margin-right: -1px;
+}
+
+.right-slope {
+	transform: skewY(-5deg);
+  margin-left: -1px;
+}
+
+.mountain1 > .left,
+.mountain1 > .right {
+	position: fixed;
+	height: 28vh;
+	bottom: calc(-20vh / 4);
+	width: 55vmin;
+	background-color: var(--clr-mountain1);
+}
+
+.mountain1 > .left {
+	transform-origin: left top;
+	transform: rotate(35deg);
+}
+
+.mountain1 > .right {
+	right: 0;
+	transform-origin: right top;
+	transform: rotate(-35deg);
+}
+
+.mountain2 > .left,
+.mountain2 > .right {
+  position: fixed;
+	height: 28vh;
+	bottom: calc(-20vh / 4);
+	width: 90vmin;
+	background-color: var(--clr-mountain2);
+}
+
+.mountain2 > .left {
+	transform-origin: left top;
+	transform: rotate(19deg);
+}
+
+.mountain2 > .right {
+	right: 0;
+	transform-origin: right top;
+	transform: rotate(-19deg);
+}
+
+.sun {
+	height: 45vmin;
+	aspect-ratio: 1;
+	position: fixed;
+	left: 50%;
+	top: 80%;
+	background-color: var(--clr-sun);
+	border-radius: 50%;
+	transform: translate(-50%, -40%);
+	box-shadow: 0 0 0 2.5vmin rgba(246, 243, 198, 0.1),
+		0 0 0 5vmin rgba(246, 243, 198, 0.1);
+}
+
+.ui {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: var(--clr-white);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.ui.right {
+  min-width: 120px;
+  text-align: center;
+  right: 20px;
+  left: auto;
+}
