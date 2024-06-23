@@ -47,7 +47,7 @@ function updateNow() {
 }
 
 updateNow();
-// setInterval(updateNow, 100);
+setInterval(updateNow, 100);
 
 // slider for time
 document.getElementById("time").oninput = function () {
