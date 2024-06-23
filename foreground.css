@@ -1,4 +1,7 @@
 :root {
+
+  rgba(241, 80, 150, 1) 0%,
+		rgba(228, 151, 109, 1) 
   --ui-opacity: 1;
   --s: -50%;
   --p: -0.05;
@@ -10,14 +13,19 @@
 		rgb(19,13,48) calc(600% + var(--s)),
 		rgb(39,33,78) calc(700% + var(--s)),
 		rgb(85,89,142) calc(800% + var(--s)),
-		rgb(181,214,224) calc(900% + var(--s)),
-		rgb(181,244,254) calc(1000% + var(--s)),
-		rgb(191,254,255) calc(1500% + var(--s)),
-		rgb(181,214,224) calc(1760% + var(--s)),
-		rgb(255,239,122) calc(1800% + var(--s)),
-		rgb(255,239,122) calc(1830% + var(--s)),
-		rgb(251, 100, 130) calc(1900% + var(--s)),
-		rgb(211, 80, 150) calc(1940% + var(--s)),
+		rgb(255,239,122) calc(900% + var(--s)),
+		rgb(251, 100, 130) calc(950% + var(--s)),
+    rgba(228, 151, 109, 1) calc(1000% + var(--s)),
+    rgba(241, 80, 150, 1) calc(1100% + var(--s)),
+    rgba(228, 151, 109, 1) calc(1200% + var(--s)),
+    rgba(241, 80, 150, 1) calc(1300% + var(--s)),
+    rgba(228, 151, 109, 1) calc(1400% + var(--s)),
+    rgba(241, 80, 150, 1) calc(1500% + var(--s)),
+    rgba(228, 151, 109, 1) calc(1600% + var(--s)),
+    rgba(241, 80, 150, 1) calc(1700% + var(--s)),
+    rgba(228, 151, 109, 1) calc(1800% + var(--s)),
+		rgb(251, 100, 130) calc(1880% + var(--s)),
+		rgb(211, 80, 150) calc(1915% + var(--s)),
 		rgb(139,43,128) calc(1950% + var(--s)),
 		rgb(39,33,78) calc(1980% + var(--s)),
 		rgb(19,13,48) calc(2200% + var(--s)),
@@ -132,12 +140,12 @@ body {
 	aspect-ratio: 1;
 	position: fixed;
 	left: 50%;
-	bottom: calc(-96em - 120em * sin(7deg + calc(var(--p) * 0.5turn)));
+	bottom: calc(-49em - 43em * sin(7deg + calc(var(--p) * 0.5turn)));
 	background-color: var(--clr-sun);
 	border-radius: 50%;
-	transform: translateX(-50%);
-	box-shadow: 0 0 0 2.5em rgba(246, 243, 198, 0.1),
-		0 0 0 5em rgba(246, 243, 198, 0.1);
+	transform: translate(-50%, -50%);
+	box-shadow: 0 0 0 1em rgba(246, 243, 198, 0.1),
+  0 0 0 2em rgba(246, 243, 198, 0.1);
 }
 
 .moon {
