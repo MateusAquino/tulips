@@ -1,10 +1,27 @@
 :root {
+  --ui-opacity: 1;
+  --s: -50%;
+  --p: -0.05;
 	--clr-black: rgba(60, 80, 50, 255);
 	--clr-sun: rgba(246, 243, 198, 255);
 	--gradient-bg: linear-gradient(
 		180deg,
-		rgba(241, 80, 150, 1) 0%,
-		rgba(228, 151, 109, 1) 50%
+		rgb(9,3,28) calc(00% + var(--s)),
+		rgb(19,13,48) calc(600% + var(--s)),
+		rgb(39,33,78) calc(700% + var(--s)),
+		rgb(85,89,142) calc(800% + var(--s)),
+		rgb(181,214,224) calc(900% + var(--s)),
+		rgb(181,244,254) calc(1000% + var(--s)),
+		rgb(191,254,255) calc(1500% + var(--s)),
+		rgb(181,214,224) calc(1760% + var(--s)),
+		rgb(255,239,122) calc(1800% + var(--s)),
+		rgb(255,239,122) calc(1830% + var(--s)),
+		rgb(251, 100, 130) calc(1900% + var(--s)),
+		rgb(211, 80, 150) calc(1940% + var(--s)),
+		rgb(139,43,128) calc(1950% + var(--s)),
+		rgb(39,33,78) calc(1980% + var(--s)),
+		rgb(19,13,48) calc(2200% + var(--s)),
+		rgb(9,3,28) calc(2330% + var(--s))
 	);
 	--clr-white: rgba(254, 250, 239, 255);
 	--clr-mountain1: rgba(105, 96, 101, 255);
@@ -12,6 +29,13 @@
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
 }
+
+linear-gradient(225deg, 
+    rgba(255,255,255,1) calc(27.59%/var(--s)), 
+    rgba(250,0,0,1)   calc(27.59%/var(--s)), 
+    rgba(108,22,95,1) calc(76.35%/var(--s)), 
+    rgba(39,32,32,1)  calc(100%/var(--s))
+  );
 
 body,
 body::after,
@@ -41,8 +65,9 @@ body {
 	position: fixed;
 	bottom: calc(-70vh / 2);
 	height: 50vh;
-	width: 100%;
 	z-index: 999;
+  left: 0;
+  right: 0;
 }
 
 .left-slope,
@@ -103,16 +128,28 @@ body {
 }
 
 .sun {
-	height: 45vmin;
+	height: 17em;
 	aspect-ratio: 1;
 	position: fixed;
 	left: 50%;
-	top: 80%;
+	bottom: calc(-96em - 120em * sin(7deg + calc(var(--p) * 0.5turn)));
 	background-color: var(--clr-sun);
 	border-radius: 50%;
-	transform: translate(-50%, -40%);
-	box-shadow: 0 0 0 2.5vmin rgba(246, 243, 198, 0.1),
-		0 0 0 5vmin rgba(246, 243, 198, 0.1);
+	transform: translateX(-50%);
+	box-shadow: 0 0 0 2.5em rgba(246, 243, 198, 0.1),
+		0 0 0 5em rgba(246, 243, 198, 0.1);
+}
+
+.moon {
+  height: 5.2em;
+  width: 5.2em;
+  background-color: #ffffff;
+  position: absolute;
+  left: calc(5.2em + 10.4em * sin(calc(var(--p) * 0.5turn)));
+  top: calc(5.2em + 10.4em * sin(calc(var(--p) * 0.5turn)));
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 60%, rgb(10, 25, 45) 33%, rgb(30, 45, 85) 180%);
+  box-shadow: inset calc(var(--l) * -4.8em) calc(var(--l) * -2.7em) 0px rgb(242, 245, 255), 0 0 0 0.25em rgba(242, 245, 255, 0.2), 0 0 0 0.75em rgba(242, 245, 255, 0.1), 0 0 0 1.25em rgba(242, 245, 255, 0.05);
 }
 
 .ui {
@@ -123,6 +160,7 @@ body {
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  opacity: var(--ui-opacity);
 }
 
 .ui.right {

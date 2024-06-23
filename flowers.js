@@ -57,7 +57,6 @@ function addFlower(n, x, y, color, s, i, r) {
   flower.style.bottom = `calc(${22 * y - 3}vh / 2)`;
   flower.style.zIndex = 10000 - Math.floor(100 * y);
   flower.onclick = () => {
-    console.log(n, diff);
     document.getElementById("isCurrent").style.display =
       n + 1 === diff ? "inline" : "none";
     document.getElementById("flowerNumber").innerText = n + 1;
@@ -81,3 +80,26 @@ for (x = 0; x < diff; x++) {
   lastFlower = addFlower(x, rnd(), rnd(), rnd(), rnd(), rnd(), rnd());
 }
 lastFlower.click();
+
+let touchstartY = 0;
+let opacity = 1;
+
+function setUIOpacity(touchendY) {
+  if (touchendY === 0) return;
+  const diff = touchendY - touchstartY;
+  opacity = Math.max(0, Math.min(1, opacity - diff / 2000));
+  const root = document.querySelector(":root");
+  root.style.setProperty("--ui-opacity", `${opacity}`);
+}
+
+document.addEventListener(
+  "touchstart",
+  (e) => (touchstartY = e.changedTouches[0].screenY)
+);
+
+document.addEventListener("touchmove", (e) =>
+  setUIOpacity(e.changedTouches[0].screenY)
+);
+
+document.addEventListener("dragstart", (e) => (touchstartY = e.screenY));
+document.addEventListener("drag", (e) => setUIOpacity(e.screenY));

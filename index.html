@@ -13,11 +13,26 @@
     <link rel="stylesheet" type="text/css" href="foreground.css" />
   </head>
   <body>
+    <div
+      style="
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        z-index: 9999999;
+      "
+    >
+      <input type="range" id="time" value="0" max="2400" style="width: 100%" />
+      <span id="timeValue">00:00</span>
+      <span id="percentValue">(0%)</span>
+    </div>
     <div class="sky">
       <div id="stars"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
     </div>
+    <div class="moon"></div>
     <div class="sun"></div>
     <div class="front">
       <div class="left-slope"></div>
@@ -58,5 +73,6 @@
     </div>
     <script src="moment.min.js"></script>
     <script src="flowers.js"></script>
+    <script src="astro.js"></script>
   </body>
 </html>
