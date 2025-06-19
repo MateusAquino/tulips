@@ -1,12 +1,12 @@
 @keyframes tulip {
   0%,
   100% {
-    transform: scale(2) translateY(-6px) rotate(2deg) rotateX(0deg)
+    transform: scale(var(--size)) translateY(-6px) rotate(2deg) rotateX(0deg)
       rotateY(-201deg);
   }
 
   50% {
-    transform: scale(2) translateY(-6px) rotate(-2deg) rotateX(2deg)
+    transform: scale(var(--size)) translateY(-6px) rotate(-2deg) rotateX(2deg)
       rotateY(-200deg);
   }
 }
@@ -68,108 +68,108 @@ div:not(.current-flower) > .tulip svg {
   height: 15px;
 }
 
-.tulip:nth-of-type(1) {
+.tulips > .tulip:nth-child(1) {
   animation-delay: 0s;
 }
 
-.tulip:nth-of-type(2) {
+.tulips > .tulip:nth-child(2) {
+  animation-delay: -0.15s;
+}
+
+.tulips > .tulip:nth-child(3) {
+  animation-delay: -0.4s;
+}
+
+.tulips > .tulip:nth-child(4) {
+  animation-delay: -0.5s;
+}
+
+.tulips > .tulip:nth-child(5) {
+  animation-delay: -0.8s;
+}
+
+.tulips > .tulip:nth-child(6) {
+  animation-delay: -1s;
+}
+
+.tulips > .tulip:nth-child(7) {
+  animation-delay: -1.25s;
+}
+
+.tulips > .tulip:nth-child(8) {
+  animation-delay: -1.4s;
+}
+
+.tulips > .tulip:nth-child(9) {
+  animation-delay: -1.6s;
+}
+
+.tulips > .tulip:nth-child(10) {
+  animation-delay: -1.28s;
+}
+
+.tulips > .tulip:nth-child(11) {
   animation-delay: -2s;
 }
 
-.tulip:nth-of-type(3) {
-  animation-delay: -4s;
+.tulips > .tulip:nth-child(12) {
+  animation-delay: -2.2s;
 }
 
-.tulip:nth-of-type(4) {
-  animation-delay: -6s;
+.tulips > .tulip:nth-child(13) {
+  animation-delay: -2.54s;
 }
 
-.tulip:nth-of-type(5) {
-  animation-delay: -8s;
+.tulips > .tulip:nth-child(14) {
+  animation-delay: -2.6s;
 }
 
-.tulip:nth-of-type(6) {
-  animation-delay: -10s;
+.tulips > .tulip:nth-child(15) {
+  animation-delay: -2.8s;
 }
 
-.tulip:nth-of-type(7) {
-  animation-delay: -12s;
+.tulips > .tulip:nth-child(16) {
+  animation-delay: -3s;
 }
 
-.tulip:nth-of-type(8) {
-  animation-delay: -14s;
+.tulips > .tulip:nth-child(17) {
+  animation-delay: -3.25s;
 }
 
-.tulip:nth-of-type(9) {
-  animation-delay: -16s;
+.tulips > .tulip:nth-child(18) {
+  animation-delay: -3.4s;
 }
 
-.tulip:nth-of-type(10) {
-  animation-delay: -18s;
+.tulips > .tulip:nth-child(19) {
+  animation-delay: -3.6s;
 }
 
-.tulip:nth-of-type(11) {
-  animation-delay: -20s;
+.tulips > .tulip:nth-child(20) {
+  animation-delay: -3.8s;
 }
 
-.tulip:nth-of-type(12) {
-  animation-delay: -22s;
+.tulips > .tulip:nth-child(21) {
+  animation-delay: -4.2s;
 }
 
-.tulip:nth-of-type(13) {
-  animation-delay: -24s;
+.tulips > .tulip:nth-child(22) {
+  animation-delay: -4.54s;
 }
 
-.tulip:nth-of-type(14) {
-  animation-delay: -26s;
+.tulips > .tulip:nth-child(23) {
+  animation-delay: -4.4s;
 }
 
-.tulip:nth-of-type(15) {
-  animation-delay: -28s;
+.tulips > .tulip:nth-child(24) {
+  animation-delay: -4.6s;
 }
 
-.tulip:nth-of-type(16) {
-  animation-delay: -30s;
+.tulips > .tulip:nth-child(25) {
+  animation-delay: -4.73s;
 }
 
-.tulip:nth-of-type(17) {
-  animation-delay: -32s;
-}
-
-.tulip:nth-of-type(18) {
-  animation-delay: -34s;
-}
-
-.tulip:nth-of-type(19) {
-  animation-delay: -36s;
-}
-
-.tulip:nth-of-type(20) {
-  animation-delay: -38s;
-}
-
-.tulip:nth-of-type(21) {
-  animation-delay: -40s;
-}
-
-.tulip:nth-of-type(22) {
-  animation-delay: -42s;
-}
-
-.tulip:nth-of-type(23) {
-  animation-delay: -44s;
-}
-
-.tulip:nth-of-type(24) {
-  animation-delay: -46s;
-}
-
-.tulip:nth-of-type(25) {
-  animation-delay: -48s;
-}
-
-.tulip:nth-of-type(26) {
-  animation-delay: -50s;
+.tulips > .tulip:nth-child(26) {
+  animation-delay: -5s;
 }
 
 .tulip,
@@ -300,5 +300,5 @@ div:not(.current-flower) > .tulip svg {
 .current-flower .tulip {
   left: 0 !important;
   bottom: 0 !important;
-  --size: 1 !important;
+  --size: 2 !important;
 }

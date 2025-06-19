@@ -71,7 +71,7 @@ function addFlower(n, x, y, color, s, i, r) {
     flowerL
   }%); --dark-color: hsl(${flowerH}, ${30 + s * 20}%, ${
     50 + i * 25
-  }%); --size: ${1 - 0.6 * y}; --rotation: ${11 - r * 22}deg;`;
+  }%); --size: ${2.8 - 2 * y}; --rotation: ${11 - r * 22}deg;`;
   flower.style.left = `calc(${x * 96}vw)`;
   flower.style.bottom = `calc(${22 * y - 3}vh / 2)`;
   flower.style.zIndex = 10000 - Math.floor(100 * y);
