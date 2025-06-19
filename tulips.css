@@ -1,12 +1,41 @@
 @keyframes tulip {
   0%,
   100% {
-    transform: scale(0.2) rotate(2deg) rotateX(0deg) rotateY(-201deg);;
+    transform: scale(2) translateY(-6px) rotate(2deg) rotateX(0deg)
+      rotateY(-201deg);
   }
 
   50% {
-    transform: scale(0.2) rotate(-2deg) rotateX(2deg) rotateY(-200deg);;
+    transform: scale(2) translateY(-6px) rotate(-2deg) rotateX(2deg)
+      rotateY(-200deg);
   }
+}
+
+div:not(.current-flower) > .tulip svg {
+  transform: translateX(-8px) translateY(-12px) scale(3) !important;
+}
+
+@media only screen and (max-width: 600px) {
+  div:not(.current-flower) > .tulip svg {
+    transform: translateX(-8px) translateY(-12px) scale(2) !important;
+  }
+}
+
+#flowerDate {
+  display: flex;
+}
+
+.tulip {
+  filter: brightness(var(--brightness));
+  transition: filter 3s ease-in-out;
+}
+
+#flowerDate:before,
+#flowerDate:after {
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid #9d886a;
+  margin: auto 5px;
 }
 
 .flowers {
@@ -24,30 +53,19 @@
   height: 100%;
 }
 
+.current-flower {
+  transform: scale(1.5) translateY(30px);
+}
+
 .tulip {
   width: 10px;
   animation: tulip 4s linear infinite;
   transform-origin: bottom center;
 }
 
-.tulip:nth-of-type(4n) {
-  --stem-color: #25af59;
-  --stem-leaf-color: #139a3e;
-}
-
-.tulip:nth-of-type(4n + 1) {
-  --stem-color: #20984d;
-  --stem-leaf-color: #118636;
-}
-
-.tulip:nth-of-type(4n + 2) {
-  --stem-color: #1b8041;
-  --stem-leaf-color: #0e702d;
-}
-
-.tulip:nth-of-type(4n + 3) {
-  --stem-color: #1b8142;
-  --stem-leaf-color: #107e33;
+.tulip svg {
+  width: 10px;
+  height: 15px;
 }
 
 .tulip:nth-of-type(1) {
@@ -173,7 +191,6 @@
   transform: scale(var(--size)) translateX(-50%);
   z-index: 0;
 }
-
 
 .stemLeaf {
   background-color: var(--stem-leaf-color);

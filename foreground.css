@@ -31,10 +31,11 @@
 		rgb(19,13,48) calc(2200% + var(--s)),
 		rgb(9,3,28) calc(2330% + var(--s))
 	);
-	--clr-white: rgba(254, 250, 239, 255);
+	--clr-white: #f8ebd9;
 	--clr-mountain1: rgba(105, 96, 101, 255);
 	--clr-mountain2: rgba(140, 138, 160, 255);
-  font-family: "Roboto", sans-serif;
+  font-family: "Comic Relief", "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 1rem;
 }
 
@@ -52,6 +53,54 @@ body::before {
 	padding: 0;
 	box-sizing: border-box;
   overflow: hidden;
+}
+
+#background-day {
+  background-image: url("images/pc-day.png");
+}
+
+#background-night {
+  background-image: url("images/pc-night.png");
+  opacity: var(--sun-visible);
+  transition: opacity 3s ease-in-out;
+}
+
+.sky {
+  background: unset !important;
+  mask-image:    url('images/pc-mask.png');
+  mask-repeat:   no-repeat;
+  mask-position: center bottom;
+  mask-size:     cover;
+
+  -webkit-mask-image:    url('images/pc-mask.png');
+  -webkit-mask-repeat:   no-repeat;
+  -webkit-mask-position: center bottom;
+  -webkit-mask-size:     cover;
+}
+
+@media only screen and (max-width: 600px) {
+  #background-day {
+    background-image: url("images/mobile-day.png");
+  }
+
+  #background-night {
+    background-image: url("images/mobile-night.png");
+  }
+
+  .sky {
+    mask-image:    url('images/mobile-mask.png');
+    -webkit-mask-image:    url('images/mobile-mask.png');
+  }
+}
+
+.moon {
+  z-index: 1;
+  opacity: var(--sun-visible);
+  transition: opacity 3s ease-in-out;
+}
+
+.ui {
+  z-index: 2;
 }
 
 body {

@@ -1,8 +1,19 @@
 const tulips = document.getElementById("tulips");
-const tulip = document.createElement("div");
-tulip.className = "tulip";
-tulip.innerHTML =
-  '<div class="stem"><div class="tulipHead"> <div class="tulipHair lightTulip lightTulip-1"></div> <div class="tulipHair darkTulip darkTulip-1"></div> <div class="tulipHair lightTulip lightTulip-2"></div> <div class="tulipHair darkTulip darkTulip-2"></div> <div class="tulipHair lightTulip lightTulip-3"></div> </div> <div class="rightTulipLeaf tulipLeaf leaf"></div> <div class="leftTulipLeaf tulipLeaf leaf"></div> <div class="rightStemLeaf stemLeaf leaf"></div> <div class="leftStemLeaf stemLeaf leaf"></div></div>';
+const tulipVersions = 20;
+
+function newTulip(id, r, g, b) {
+  const tulip = document.createElement("div");
+  const version = (id % tulipVersions) + 1;
+  const safeVersion = version < 10 ? `0${version}` : version;
+  tulip.className = "tulip";
+  tulip.innerHTML = `<svg class="tulip" xmlns="http://www.w3.org/2000/svg">
+    <filter id="tulip-${id}">
+      <feColorMatrix type="matrix" values="${1.1*r+0.25} 0 0 0 0  ${1.1*g} 1 0 0 0  ${1.1*b} 0 1 0 0  0 0 0 1 0"/>
+    </filter>
+    <image href="images/tulips/tulip_${safeVersion}.png" filter="url(#tulip-${id})" width="100%" height="100%" />
+  </svg>`;
+  return tulip;
+}
 
 function sfc32(a, b, c, d) {
   return function () {
@@ -47,10 +58,18 @@ const months = {
 };
 
 function addFlower(n, x, y, color, s, i, r) {
-  const flower = tulip.cloneNode(true);
-  flower.style = `--color: hsl(${color * 360}, ${80 + s * 20}%, ${
-    65 + i * 25
-  }%); --dark-color: hsl(${color * 360}, ${30 + s * 20}%, ${
+  const flowerH = color * 360;
+  const flowerS = 80 + s * 20;
+  const flowerL = 65 + i * 25;
+  const [flowerR, flowerG, flowerB] = hslToRgb(
+    flowerH / 360,
+    0.9*(flowerS / 100),
+    0.75*(flowerL / 100)
+  );
+  const flower = newTulip(n, flowerR, flowerG, flowerB);
+  flower.style = `--color: hsl(${flowerH}, ${flowerS}%, ${
+    flowerL
+  }%); --dark-color: hsl(${flowerH}, ${30 + s * 20}%, ${
     50 + i * 25
   }%); --size: ${1 - 0.6 * y}; --rotation: ${11 - r * 22}deg;`;
   flower.style.left = `calc(${x * 96}vw)`;
@@ -74,6 +93,45 @@ function addFlower(n, x, y, color, s, i, r) {
   tulips.appendChild(flower);
   return flower;
 }
+
+const { abs, min, max } = Math;
+
+/**
+ * Converts an HSL color value to RGB. Conversion formula
+ * adapted from https://en.wikipedia.org/wiki/HSL_color_space.
+ * Assumes h, s, and l are contained in the set [0, 1] and
+ * returns r, g, and b in the set [0, 255].
+ *
+ * @param   {number}  h       The hue
+ * @param   {number}  s       The saturation
+ * @param   {number}  l       The lightness
+ * @return  {Array}           The RGB representation
+ */
+function hslToRgb(h, s, l) {
+  let r, g, b;
+
+  if (s === 0) {
+    r = g = b = l; // achromatic
+  } else {
+    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    const p = 2 * l - q;
+    r = hueToRgb(p, q, h + 1/3);
+    g = hueToRgb(p, q, h);
+    b = hueToRgb(p, q, h - 1/3);
+  }
+
+  return [r, g, b];
+}
+
+function hueToRgb(p, q, t) {
+  if (t < 0) t += 1;
+  if (t > 1) t -= 1;
+  if (t < 1/6) return p + (q - p) * 6 * t;
+  if (t < 1/2) return q;
+  if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+  return p;
+}
+
 
 let lastFlower;
 for (x = 0; x < diff; x++) {
@@ -103,3 +161,7 @@ document.addEventListener("touchmove", (e) =>
 
 document.addEventListener("dragstart", (e) => (touchstartY = e.screenY));
 document.addEventListener("drag", (e) => setUIOpacity(e.screenY));
+document.addEventListener("dblclick", (e) => {
+  if (document.fullscreenElement) document.exitFullscreen();
+  else document.documentElement.requestFullscreen();
+});

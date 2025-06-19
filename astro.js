@@ -29,11 +29,14 @@ function setTimePercent(time, lunarTime) {
   const sunrise = SunriseSunsetJS.getSunrise(-23.234536, -45.92584308055668);
   const sunriseHours = sunrise.getHours();
   const sunriseMinutes = sunrise.getMinutes();
-  const sunrisePercent = -675;
   const sunset = SunriseSunsetJS.getSunset(-23.234536, -45.92584308055668);
   const sunsetHours = sunset.getHours();
   const sunsetMinutes = sunset.getMinutes();
-  const sunsetPercent = -1750;
+  const isSunVisible = 
+    (hours > sunriseHours || (hours === sunriseHours && minutes >= sunriseMinutes)) &&
+    (hours < sunsetHours || (hours === sunsetHours && minutes <= sunsetMinutes));
+  root.style.setProperty("--sun-visible", isSunVisible ? "0%" : "100%");
+  root.style.setProperty("--brightness", isSunVisible ? "100%" : "80%");
 }
 
 function updateNow() {
@@ -47,10 +50,16 @@ function updateNow() {
 }
 
 updateNow();
-setInterval(updateNow, 100);
+const updateInterval = setInterval(updateNow, 100);
 
 // slider for time
 document.getElementById("time").oninput = function () {
   const time = this.value / 2400.0; // returns 0-1
   setTimePercent(time, time * halfLunarAge * 2);
 };
+
+function control() {
+  const controls = document.getElementById("controls");
+  controls.style.display = "block";
+  clearInterval(updateInterval);
+}
